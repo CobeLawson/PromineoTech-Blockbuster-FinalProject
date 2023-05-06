@@ -1,0 +1,15 @@
+package blockbuster.controller;
+
+import blockbuster.entity.Rental;
+import blockbuster.entity.RentalDraft;
+import jakarta.validation.Valid;
+
+public class DefaultCheckInController implements CheckInController {
+
+	@Override
+	public Rental returnRental(@Valid RentalDraft rentalDraft) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

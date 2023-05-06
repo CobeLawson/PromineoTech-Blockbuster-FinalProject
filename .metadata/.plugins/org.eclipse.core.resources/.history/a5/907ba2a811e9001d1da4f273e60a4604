@@ -1,0 +1,112 @@
+DROP TABLE reviews;
+DROP TABLE transactions;
+DROP TABLE products;
+DROP TABLE video_games;
+DROP TABLE movies;
+DROP TABLE genre;
+DROP TABLE media_type;
+DROP TABLE customers;
+DROP TABLE administration;
+
+CREATE TABLE administration (
+	administrator_pk int unsigned NOT NULL AUTO_INCREMENT,
+	administrator_role varchar(25) NOT NULL,
+	administrator_name varchar(50) NOT NULL,
+	administrator_age int NOT NULL,
+	administrator_phone varchar(50) NOT NULL,
+	PRIMARY KEY (administrator_pk)
+);
+
+CREATE TABLE customers (
+	customer_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	customer_name varchar(50) NOT NULL,
+	customer_age int NOT NULL,
+	customer_phone varchar(25) NOT NULL,
+	PRIMARY KEY (customer_pk)
+);
+
+CREATE TABLE media_type (
+	media_type_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	media_type_name varchar(50) NOT NULL,
+	PRIMARY KEY (media_type_pk)
+);
+
+CREATE TABLE genre (
+	genre_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	genre_name varchar(50) NOT NULL,
+	PRIMARY KEY (genre_pk)
+);
+
+CREATE TABLE movies (
+	movie_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	title varchar(50) NOT NULL,
+	price float(4,2),
+	media_type_fk int unsigned NOT NULL,
+	genre_fk int unsigned NOT NULL,
+	PRIMARY KEY (movie_pk),
+	FOREIGN KEY (media_type_fk) 
+		REFERENCES media_type (media_type_pk),
+	FOREIGN KEY (genre_fk) 
+		REFERENCES genre (genre_pk)
+);
+
+CREATE TABLE video_games (
+	video_game_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	title varchar(50) NOT NULL,
+	price float(4,2),
+	media_type_fk int unsigned NOT NULL,
+	genre_fk int unsigned NOT NULL,
+	PRIMARY KEY (video_game_pk),
+	FOREIGN KEY (media_type_fk) 
+		REFERENCES media_type (media_type_pk),
+	FOREIGN KEY (genre_fk) 
+		REFERENCES genre (genre_pk)
+);
+
+CREATE TABLE products AS
+SELECT m.movie_pk AS product_pk, m.title AS title, m.price AS price, m.media_type_fk AS media_type, m.genre_fk AS genre
+FROM movies m
+UNION ALL
+SELECT vg.video_game_pk AS product_pk, vg.title AS title, vg.price AS price, vg.media_type_fk AS media_type, vg.genre_fk AS genre
+FROM video_games vg;
+
+ALTER TABLE products
+ADD primary key auto_increment (product_pk);
+
+ALTER TABLE products
+ADD due_dat date;
+
+ALTER TABLE products
+ADD status varchar(25);
+
+
+CREATE TABLE transactions (
+	transaction_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	transaction_date date NOT null,
+	due_date date NOT NULL,
+	price float(5, 2) NOT NULL,
+	product_list set('') NOT NULL,
+	customer_fk int unsigned NOT NULL,
+	administrator_fk int unsigned NOT NULL,
+	PRIMARY KEY (transaction_pk),
+	FOREIGN KEY (customer_fk) 
+		REFERENCES customers (customer_pk),
+	FOREIGN KEY (administrator_fk) 
+		REFERENCES administration (administrator_pk)
+);
+
+
+CREATE TABLE reviews (
+	review_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	review_string varchar(250) NOT NULL,
+	movie_fk int unsigned,
+	video_game_fk int unsigned,
+	customer_fk int unsigned NOT NULL,
+	PRIMARY KEY (review_pk),
+	FOREIGN KEY (movie_fk) 
+		REFERENCES movies (movie_pk) ON DELETE CASCADE,
+	FOREIGN KEY (video_game_fk) 
+		REFERENCES video_games (video_game_pk) ON DELETE cAScade,
+	FOREIGN KEY (customer_fk) 
+		REFERENCES customers (customer_pk)
+);

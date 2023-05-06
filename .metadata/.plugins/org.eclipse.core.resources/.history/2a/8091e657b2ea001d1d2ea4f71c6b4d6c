@@ -1,0 +1,28 @@
+/**
+ * 
+ */
+package com.promineotech.blockbuster.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
+import lombok.Data;
+
+/**
+ * @author Cobe Mitchel Lawson
+ *
+ */
+@Data
+@Builder
+public class Administrator {
+  private int administratorPK;
+  private String administratorRole;
+  private String administratorName;
+  private String administratorPhone;
+  
+  /*
+  @JsonIgnore
+  public int getAdministratorPK() {
+  	return administratorPK;
+  }
+  */
+}

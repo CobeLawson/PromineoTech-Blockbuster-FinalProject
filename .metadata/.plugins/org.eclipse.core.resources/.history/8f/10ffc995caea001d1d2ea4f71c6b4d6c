@@ -1,0 +1,33 @@
+package com.promineotech.blockbuster.entity;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Optional;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
+import lombok.Data;
+
+/**
+ * @author Cobe Mitchel Lawson
+ *
+ */
+@Data
+@Builder
+public class Product {
+	private int productPK;
+	private String productID;
+	private String title;
+  private String status;
+  private Optional<LocalDate> dueDate;
+  private BigDecimal price;
+  
+  @JsonIgnore
+  public int getProductPK() {
+  	return productPK;
+  }
+  
+  @JsonIgnore
+  public String getProductTitle() {
+  	return title;
+  }
+}

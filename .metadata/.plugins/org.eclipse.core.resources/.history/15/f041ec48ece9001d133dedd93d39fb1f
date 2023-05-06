@@ -1,0 +1,37 @@
+DROP TABLE IF EXISTS video_games;
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS administration;
+
+CREATE TABLE administration (
+	administrator_pk int unsigned NOT NULL AUTO_INCREMENT,
+	administrator_role varchar(25) NOT NULL,
+	administrator_name varchar(50) NOT NULL,
+	administrator_phone varchar(50) NOT NULL,
+	PRIMARY KEY (administrator_pk)
+);
+
+CREATE TABLE customers (
+	customer_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	customer_name varchar(50) NOT NULL,
+	customer_age int NOT NULL,
+	customer_phone varchar(25) NOT NULL,
+	PRIMARY KEY (customer_pk)
+);
+
+CREATE TABLE movies (
+	movie_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	title varchar(50) NOT NULL,
+	price float(4,2) NOT NULL,
+	media_type enum('LASERDISK', 'VHS', 'DVD', 'BLURAY', 'BLURAY_4K'),
+	genre enum('DRAMA', 'COMEDY', 'ANIMATION', 'FAMILY', 'HORROR', 'ACTION', 'ADVENTURE', 'MYSTERY', 'ROMANCE', 'SCIENCE_FICTION', 'FANTASY', 'COMING_OF_AGE', 'DOCUMENTARY'),
+	PRIMARY KEY (movie_pk) 
+);
+
+CREATE TABLE video_games (
+	video_game_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	title varchar(50) NOT NULL,
+	price float(4,2) NOT NULL,
+	console enum('COMPUTER', 'XBOX', 'XBOX_360', 'XBOX_ONE', 'XBOX_SERIES_X', 'PLAYSTATION', 'PLAYSTATION_2', 'PLAYSTATION_3', 'PLAYSTATION_4', 'PLAYSTATION_5', 'NINTENDO_GAMEBOY', 'NINTENDO_DS', 'NINTENDO_3DS', 'NINTENDO_GAMECUBE', 'NINTENDO_WII', 'NINTENDO_WII_U', 'NINTENDO_SWITCH'),
+	gameplay enum('ROLE_PLAYING_GAME', 'FIRST_PERSON_SHOOTER', 'THIRD_PERSON_SHOOTER', 'PLATFORMER', 'TOP_DOWN', 'DECK_BUILDER', 'STRATEGY', 'MASSIVE_MULTIPLAYER_ONLINE', 'ARCADE'),
+	PRIMARY KEY (video_game_pk) );

@@ -1,0 +1,14 @@
+package com.promineotech.blockbuster.dao;
+
+import java.util.List;
+import com.promineotech.blockbuster.entity.Product;
+
+public class DefaultProductInventoryDao implements ProductInventoryDao {
+
+	@Override
+	public List<Product> fetchProducts(String status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

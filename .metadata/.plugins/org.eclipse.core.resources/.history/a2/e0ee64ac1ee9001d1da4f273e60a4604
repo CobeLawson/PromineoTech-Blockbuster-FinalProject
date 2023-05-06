@@ -1,0 +1,8 @@
+/**
+ * 
+ */
+package blockbuster.entity;
+
+public enum Format {
+	
+}

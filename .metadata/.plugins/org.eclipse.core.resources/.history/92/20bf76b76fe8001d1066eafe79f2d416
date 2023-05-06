@@ -1,0 +1,22 @@
+package blockbuster.entity;
+
+import java.math.BigDecimal;
+import java.util.List;
+import lombok.Builder;
+import lombok.Data;
+
+/**
+ * @author Cobe Mitchel Lawson
+ *
+ */
+@Data
+@Builder
+public class Rental {
+  private int rentalPK;
+  private List<Product> product_list;
+  private String date;
+  private String dueDate;
+  private BigDecimal price;
+  private Customer customer;
+  private Administrator administrator;
+}

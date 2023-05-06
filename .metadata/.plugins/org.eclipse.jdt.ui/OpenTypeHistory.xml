@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.controller{MovieInventoryController.java[MovieInventoryController" modifiers="513" timestamp="1683411603968"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.service{MovieInventoryService.java[MovieInventoryService" modifiers="513" timestamp="1683252243649"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.dao{MovieInventoryDao.java[MovieInventoryDao" modifiers="513" timestamp="1683252502100"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.controller{VideoGameInventoryController.java[VideoGameInventoryController" modifiers="513" timestamp="1683410045304"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.service{VideoGameInventoryService.java[VideoGameInventoryService" modifiers="513" timestamp="1683311113072"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.dao{VideoGameInventoryDao.java[VideoGameInventoryDao" modifiers="513" timestamp="1683311350054"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.controller{ReviewSystemController.java[ReviewSystemController" modifiers="513" timestamp="1683410109827"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.service{ReviewSystemService.java[ReviewSystemService" modifiers="513" timestamp="1683410238853"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.dao{ReviewSystemDao.java[ReviewSystemDao" modifiers="513" timestamp="1683410388356"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.controller{ProductInventoryController.java[ProductInventoryController" modifiers="513" timestamp="1683412615264"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.service{ProductInventoryService.java[ProductInventoryService" modifiers="513" timestamp="1683411904552"/>
+    <typeInfo handle="=blockbuster/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.promineotech.blockbuster.dao{ProductInventoryDao.java[ProductInventoryDao" modifiers="513" timestamp="1683412062393"/>
+</typeInfoHistroy>

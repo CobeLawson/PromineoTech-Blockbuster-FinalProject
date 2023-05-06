@@ -1,0 +1,515 @@
+package blockbuster.dao;
+
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.stereotype.Component;
+import com.promineotech.blockbuster.entity.Administrator;
+import com.promineotech.blockbuster.entity.Console;
+import com.promineotech.blockbuster.entity.Customer;
+import com.promineotech.blockbuster.entity.Gameplay;
+import com.promineotech.blockbuster.entity.Genre;
+import com.promineotech.blockbuster.entity.MediaType;
+import com.promineotech.blockbuster.entity.Movie;
+import com.promineotech.blockbuster.entity.Product;
+import com.promineotech.blockbuster.entity.Rental;
+import com.promineotech.blockbuster.entity.VideoGame;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+
+@Component
+public class DefaultCheckInDao implements CheckInDao {
+	
+	@Autowired
+	private NamedParameterJdbcTemplate jdbcTemplate;
+
+	@Override
+	public Rental saveRental(Administrator administrator, Customer customer, List<Product> products, BigDecimal price, LocalDate date, LocalDate dueDate) {
+		SqlParams params = generateInsertSql(administrator, customer, price, date, dueDate);
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(params.sql, params.source, keyHolder); 
+		
+		int rentalPK = keyHolder.getKey().intValue();
+		saveProducts(products, rentalPK);
+
+		// @formatter:off
+		return Rental.builder()
+				.rentalPK(rentalPK)
+				.administrator(administrator)
+				.customer(customer)
+				.product_list(products)
+				.price(price)
+				.date(date)
+				.dueDate(dueDate)
+				.build();
+		// @formatter:on
+	}
+	
+	private void saveProducts(List<Product> products, int rentalPK) {
+		for(Product product : products) {
+			SqlParams params = generateInsertSql(product, rentalPK);
+			jdbcTemplate.update(params.sql, params.source);
+		}
+	}
+	
+	private SqlParams generateInsertSql(Product product, int rentalPK) {
+		SqlParams params = new SqlParams();
+		
+		// @formatter:off
+		params.sql = ""
+				+ "INSERT INTO transactions ("
+				+ "products, transaction_pk"
+				+ ") VALUES ("
+				+ ":products, :transaction_pk"
+				+ ")";
+		// @formatter:on
+		
+		params.source.addValue("products", product.getTitle());
+		params.source.addValue("transaction_pk", rentalPK);
+		
+		return params;
+	}
+
+	private SqlParams generateInsertSql(Administrator administrator, Customer customer, BigDecimal price, LocalDate date, LocalDate dueDate) {
+		
+		// @formatter:off
+		String sql = ""
+				+ "INSERT INTO transactions ("
+				+ "administrator_fk, customer_fk, product_list, price, date, due_date"
+				+ ") VALUES ("
+				+ ":administrator, :customer, :products, :price, :date, :due_date"
+				+")";
+		// @formatter:on
+		
+		SqlParams params = new SqlParams();
+		
+		params.sql = sql;
+		params.source.addValue("administrator_fk", administrator.getAdministratorPK());
+		params.source.addValue("customer_fk", customer.getCustomerPK());
+		params.source.addValue("price", price);
+		params.source.addValue("date", date);
+		params.source.addValue("due_date", dueDate);
+		
+		return params;
+	}
+
+	@Override
+	public List<Movie> fetchAllMovies() {
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT * "
+				+ "FROM movies ";
+		// @formatter:on
+		
+		List<Movie> movies = null;
+		for(Movie movie : movies) {
+			jdbcTemplate.query(sql, new MovieResultSetExtractor());
+		}
+		
+		return movies;
+	}
+
+	@Override
+	public List<VideoGame> fetchAllVideoGames() {
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT * "
+				+ "FROM video_games ";
+		// @formatter:on
+		
+		List<VideoGame> videoGames = null;
+		for(VideoGame videoGame : videoGames) {
+			jdbcTemplate.query(sql, new VideoGameResultSetExtractor());
+		}
+		
+		return videoGames;
+	}
+
+	@Override
+	public List<Product> fetchAllProducts() {
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT * "
+				+ "FROM products ";
+		// @formatter:on
+		
+		List<Product> products = null;
+		for(Product product : products) {
+			jdbcTemplate.query(sql, new ProductResultSetExtractor());
+		}
+		
+		return products;
+	}
+	
+	@Override
+	public List<Administrator> fetchAllAdministrators() {
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT * "
+				+ "FROM administration ";
+		// @formatter:on
+		
+		List<Administrator> administrators = null;
+		for(Administrator administrator : administrators) {
+			jdbcTemplate.query(sql, new AdministratorResultSetExtractor());
+		}
+		
+		return administrators;
+	}
+	
+	@Override
+	public List<Customer> fetchAllCustomers() {
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT * "
+				+ "FROM customers ";
+		// @formatter:on
+		
+		List<Customer> customers = null;
+		for(Customer customer : customers) {
+			jdbcTemplate.query(sql, new CustomerResultSetExtractor());
+		}
+		
+		return customers;
+	}
+	
+	@Override
+	public List<Product> fetchProducts(List<String> productTitles) {
+		if(productTitles.isEmpty()) {
+			return new LinkedList<>();
+		}
+		
+		Map<String, Object> params = new HashMap<>();
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT * "
+				+ "FROM products "
+				+ "WHERE title IN(";
+		// @formatter:on
+		
+		for (int index = 0; index < productTitles.size(); index++) {
+			String key = "product_" + index;
+			sql += ":" + key + ", ";
+			params.put(key, productTitles.get(index));
+		}
+		
+		sql = sql.substring(0, sql.length() - 2);
+		sql += ")";
+		
+		return jdbcTemplate.query(sql, params, new RowMapper<Product>() {
+			@Override
+			public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+				// @formatter:off
+				return Product.builder()
+						.productPK(rs.getInt("product_pk"))
+						.title(rs.getString("title"))
+						.dueDate(rs.getDate("due_date").toLocalDate())
+						.status(rs.getString("status"))
+						.price(BigDecimal.valueOf(rs.getFloat("price")))
+						.build();
+				// @formatter:on
+			}
+		});
+	}
+
+	@Override
+	public Optional<Movie> fetchMovieByPK(int moviePK) {
+
+		Map<String, Object> params = new HashMap<>();
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT " + params
+				+ " FROM movies ";
+		// @formatter:on
+		
+		return Optional.ofNullable(
+				jdbcTemplate.query(sql, params, new MovieResultSetExtractor()));
+	}
+
+	@Override
+	public Optional<VideoGame> fetchVideoGameByPK(int videoGamePK) {
+
+		Map<String, Object> params = new HashMap<>();
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT " + params
+				+ " FROM video_games ";
+		// @formatter:on
+		
+		return Optional.ofNullable( 
+				jdbcTemplate.query(sql, params, new VideoGameResultSetExtractor()));
+	}
+	
+	public Optional<Product> fetchProductByPK(int productPK) {
+
+		Map<String, Object> params = new HashMap<>();
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT " + params
+				+ " FROM products ";
+		// @formatter:on
+		
+		return Optional.ofNullable(
+				jdbcTemplate.query(sql, params, new ProductResultSetExtractor()));
+	}
+	
+	public Administrator fetchAdministrator(String administrator) {
+
+		Map<String, Object> params = new HashMap<>();
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT " + params
+				+ " FROM adminstration ";
+		// @formatter:on
+		
+		return jdbcTemplate.query(sql, params, new AdministratorResultSetExtractor());
+	}
+
+	public Customer fetchCustomer(String customer) {
+
+		Map<String, Object> params = new HashMap<>();
+		
+		// @formatter:off
+		String sql = ""
+				+ "SELECT " + params
+				+ " FROM customers ";
+		// @formatter:on
+		
+		return jdbcTemplate.query(sql, params, new CustomerResultSetExtractor());
+	}
+
+}
+
+/*
+
+class MovieResultSetExtractor implements ResultSetExtractor<Movie> {
+
+	@Override
+	public Movie extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		// @formatter:off
+		return Movie.builder()
+			.moviePK(rs.getInt("video_game_pk"))
+			.title(rs.getString("title"))
+			.price(BigDecimal.valueOf(rs.getFloat("price")))
+			.genre(Genre.valueOf(rs.getString("genre")))
+			.mediaType(MediaType.valueOf(rs.getString("media_type")))
+			.build();
+		// @formatter:on
+	}
+	
+}
+
+/*
+class MoviesResultSetExtractor implements ResultSetExtractor<List<Movie>> {
+
+	@Override
+	public List<Movie> extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		// @formatter:off
+		return Movie.builder()
+				.moviePK(rs.getInt("video_game_pk"))
+				.title(rs.getString("title"))
+				.price(BigDecimal.valueOf(rs.getFloat("price")))
+				.genre(rs.getString("genre"))
+				.mediaType(rs.getString("media_type"))
+				.build();
+		// @formatter:on
+	}
+	
+}
+
+class VideoGameResultSetExtractor implements ResultSetExtractor<VideoGame> {
+
+	@Override
+	public VideoGame extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		// @formatter:off
+		return VideoGame.builder()
+				.videoGamePK(rs.getInt("video_game_pk"))
+				.title(rs.getString("title"))
+				.price(BigDecimal.valueOf(rs.getFloat("price")))
+				.console(Console.valueOf(rs.getString("console")))
+				.gameplay(Gameplay.valueOf(rs.getString("gameplay")))
+				.build();
+		// @formatter:on
+	}
+	
+}
+
+class VideoGamesResultSetExtractor implements ResultSetExtractor<List<VideoGame>> {
+
+	@Override
+	public List<VideoGame> extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		// @formatter:off
+		return VideoGame.builder()
+				.videoGamePK(rs.getInt("video_game_pk"))
+				.title(rs.getString("title"))
+				.price(BigDecimal.valueOf(rs.getFloat("price")))
+				.genre(rs.getString("genre"))
+				.mediaType(rs.getString("media_type"))
+				.build();
+		// @formatter:on
+	}
+	
+}
+
+class ProductResultSetExtractor implements ResultSetExtractor<Product> {
+
+	@Override
+	public Product extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		// @formatter:off
+		return Product.builder()
+				.productPK(rs.getInt("product_pk"))
+				.title(rs.getString("title"))
+				.dueDate(rs.getDate("due_date").toLocalDate())
+				.status(rs.getString("status"))
+				.price(BigDecimal.valueOf(rs.getFloat("price")))
+				.build();
+		// @formatter:on
+	}
+	
+}
+
+class ProductsResultSetExtractor implements ResultSetExtractor<List<Product>> {
+
+	@Override
+	public List<Product> extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		List<Product> products = null;
+		for(Product product : products) {
+			// @formatter:off
+			product.builder()
+				.productPK(rs.getInt("product_pk"))
+				.title(rs.getString("title"))
+				.dueDate(rs.getDate("due_date").toLocalDate())
+				.status(rs.getString("status"))
+				.price(BigDecimal.valueOf(rs.getFloat("price")))
+				.build();
+			// @formatter:on
+		}
+		
+		return products;
+	}
+	
+}
+
+class AdministratorResultSetExtractor implements ResultSetExtractor<Administrator> {
+
+	@Override
+	public Administrator extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		// @formatter:off
+		return Administrator.builder()
+				.administratorPK(rs.getInt("administrator_pk"))
+				.administratorRole(rs.getString("administrator_role"))
+				.administratorName(rs.getString("administrator_name"))
+				.administratorPhone(rs.getString("administrator_phone"))
+				.build();
+		// @formatter:on
+	}
+	
+}
+
+class AdministratorsResultSetExtractor implements ResultSetExtractor<List<Administrator>> {
+
+	@Override
+	public List<Administrator> extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		List<Administrator> administrators = null;
+		for(Administrator administrator : administrators) {
+		// @formatter:off
+			administrator.builder()
+				.administratorPK(rs.getInt("administrator_pk"))
+				.administratorRole("administrator_role")
+				.administratorName(rs.getString("administrator_name"))
+				.administratorPhone(rs.getString("administrator_phone"))
+				.administratorAge(rs.getInt("administrator_age"))
+				.build();
+		// @formatter:on
+		}
+		
+		return administrators;
+	}
+	
+}
+
+class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
+
+	@Override
+	public Customer extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		// @formatter:off
+		return Customer.builder()
+				.customerPK(rs.getInt("customer_pk"))
+				.customerName(rs.getString("customer_name"))
+				.customerPhone(rs.getString("customer_phone"))
+				.customerAge(rs.getInt("customer_age"))
+				.build();
+		// @formatter:on
+	}
+	
+}
+
+class CustomersResultSetExtractor implements ResultSetExtractor<List<Customer>> {
+
+	@Override
+	public List<Customer> extractData(ResultSet rs) throws SQLException, DataAccessException {
+		rs.next();
+		
+		List<Customer> customers = null;
+		for(Customer customer : customers) {
+			// @formatter:off
+			customer.builder()
+				.customerPK(rs.getInt("customer_pk"))
+				.customerName(rs.getString("customer_name"))
+				.customerPhone(rs.getString("customer_phone"))
+				.customerAge(rs.getInt("customer_age"))
+				.build();
+			// @formatter:on
+		}
+		return customers;
+	}
+	
+}
+
+class SqlParams {
+	String sql;
+	MapSqlParameterSource source = new MapSqlParameterSource();
+}
+
+*/

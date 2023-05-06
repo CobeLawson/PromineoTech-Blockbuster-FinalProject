@@ -1,0 +1,308 @@
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS video_games;
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS administration;
+
+-- administration table -- 
+CREATE TABLE administration (
+	administrator_pk int unsigned NOT NULL AUTO_INCREMENT,
+	administrator_role varchar(25) NOT NULL,
+	administrator_name varchar(50) NOT NULL,
+	administrator_phone varchar(50) NOT NULL,
+	PRIMARY KEY (administrator_pk)
+);
+
+-- administration data--
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Manager', 'David Lynch', '111-222-3333');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Manager', 'Greta Gerwig', '222-333-4444');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Assistant Manager', 'Steven Spielberg', '333-444-5555');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Assistant Manager', 'Wes Anderson', '444-555-6666');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Assistant Manager', 'Quentin Tarantino', '555-666-7777');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Cashier', 'Alfred Hitchcock', '666-777-8888');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Cashier', 'Stanley Kubrick', '777-888-9999');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Cashier', 'Kathryn Bigelow', '999-888-7777');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Cashier', 'Patty Jenkins', '888-777-6666');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Cashier', 'Tim Burton', '777-666-5555');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Cashier', 'Chloe Zhao', '666-555-4444');
+INSERT INTO administration (administrator_role, administrator_name, administrator_phone) VALUES ('Cashier', 'Peter Jackson', '555-444-3333');
+
+-- customers table --
+CREATE TABLE customers (
+	customer_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	customer_name varchar(50) NOT NULL,
+	customer_age int NOT NULL,
+	customer_phone varchar(25) NOT NULL,
+	PRIMARY KEY (customer_pk)
+);
+
+-- customers data --
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Bruce Willis', 68, '123-234-3456');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('John Stamos', 59, '234-345-4567');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Mary Elizabeth Winstead', 38, '345-456-5678');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Kristen Bell', 42, '456-567-6789');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Margot Robbie', 32, '567-678-7890');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Kurt Russell', 72, '101-202-3030');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Ana de Armas', 34, '202-303-4040');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Willem Dafoe', 67, '303-404-5050');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Arnold Schwarzenegger', 75, '404-505-6060');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Keanu Reeves', 58, '505-606-7070');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Laura Dern', 56, '606-707-8080');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Timothée Chalamet', 27, '707-808-9090');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Jackie Chan', 69, '991-881-7711');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Steven Yeun', 39, '881-771-6611');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Ali Wong', 41, '771-661-5511');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Denzel Washinton', 68, '661-551-4411');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Angela Bassett', 64, '551-441-3311');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('LaKeith Stanfield', 31, '441-331-2211');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Don Cheadle', 58, '331-221-1111');
+INSERT INTO customers (customer_name, customer_age, customer_phone) VALUES ('Zazie Beetz', 31, '123-456-7890');
+
+-- movies table --
+CREATE TABLE movies (
+	movie_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	title varchar(50) NOT NULL,
+	price float NOT NULL,
+	media_type enum('LASERDISK', 'VHS', 'DVD', 'BLURAY', 'BLURAY_4K') NOT NULL,
+	genre enum('DRAMA', 'COMEDY', 'ANIMATION', 'FAMILY', 'HORROR', 'ACTION', 'ADVENTURE', 'MYSTERY', 'ROMANCE', 'SCIENCE_FICTION', 'FANTASY', 'COMING_OF_AGE', 'DOCUMENTARY') NOT NULL,
+	PRIMARY KEY (movie_pk)
+);
+
+-- movies data --
+INSERT INTO movies (movie_pk, title, price, media_type, genre) VALUES (1001, 'The Shawshank Redemption', 5.00, 'BLURAY_4K', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Shawshank Redemption', 4.00, 'BLURAY', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Shawshank Redemption', 3.00, 'DVD', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Shawshank Redemption', 2.00, 'VHS', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Shawshank Redemption', 1.00, 'LASERDISK', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('District 9', 5.00, 'BLURAY_4K', 'SCIENCE_FICTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('District 9', 4.00, 'BLURAY', 'SCIENCE_FICTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('District 9', 3.00, 'DVD', 'SCIENCE_FICTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Stardust', 5.00, 'BLURAY_4K', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Stardust', 4.00, 'BLURAY', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Stardust', 3.00, 'DVD', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('When Harry Met Sally', 4.00, 'BLURAY', 'ROMANCE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('When Harry Met Sally', 3.00, 'DVD', 'ROMANCE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('When Harry Met Sally', 2.00, 'VHS', 'ROMANCE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('When Harry Met Sally', 1.00, 'LASERDISK', 'ROMANCE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Beau is Afraid', 5.00, 'BLURAY_4K', 'HORROR');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Green Knight', 5.00, 'BLURAY_4K', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Green Knight', 4.00, 'BLURAY', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Hereditary', 5.00, 'BLURAY_4K', 'HORROR');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Hereditary', 4.00, 'BLURAY', 'HORROR');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Big Trouble in Little China', 4.00, 'BLURAY', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Big Trouble in Little China', 3.00, 'DVD', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Big Trouble in Little China', 2.00, 'VHS', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Big Trouble in Little China', 1.00, 'LASERDISK', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Planet Earth', 5.00, 'BLURAY_4K', 'DOCUMENTARY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Planet Earth', 4.00, 'BLURAY', 'DOCUMENTARY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Planet Earth', 3.00, 'DVD', 'DOCUMENTARY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Planet Earth 2', 5.00, 'BLURAY_4K', 'DOCUMENTARY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Planet Earth 2', 4.00, 'BLURAY', 'DOCUMENTARY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Moonstruck', 3.00, 'DVD', 'ROMANCE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Moonstruck', 2.00, 'VHS', 'ROMANCE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Moonstruck', 1.00, 'LASERDISK', 'ROMANCE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('National Treasure', 4.00, 'BLURAY', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('National Treasure', 3.00, 'DVD', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('National Treasure 2', 4.00, 'BLURAY', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('National Treasure 2', 3.00, 'DVD', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Forgetting Sarah Marshall', 4.00, 'BLURAY', 'COMEDY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Forgetting Sarah Marshall', 3.00, 'DVD', 'COMEDY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Escape FROM New York', 4.00, 'BLURAY', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Escape FROM New York', 3.00, 'DVD', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Escape FROM New York', 2.00, 'VHS', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Escape FROM New York', 1.00, 'LASERDISK', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Escape FROM LA', 3.00, 'DVD', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Escape FROM LA', 2.00, 'VHS', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Escape FROM LA', 1.00, 'LASERDISK', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: Curse of the Black Pearl', 4.00, 'BLURAY', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: Curse of the Black Pearl', 3.00, 'DVD', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: Dead Mans Chest', 4.00, 'BLURAY', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: Dead Mans Chest', 3.00, 'DVD', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: At Worlds End', 4.00, 'BLURAY', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: At Worlds End', 3.00, 'DVD', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: On Stranger Tides', 4.00, 'BLURAY', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: On Stranger Tides', 3.00, 'DVD', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: Dead Men Tell No Tales', 4.00, 'BLURAY', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pirates of the Caribbean: Dead Men Tell No Tales', 3.00, 'DVD', 'ADVENTURE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Lord of the Rings: The Fellowship of the Ring', 5.00, 'BLURAY_4K', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Lord of the Rings: The Fellowship of the Ring', 4.00, 'BLURAY', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Lord of the Rings: The Fellowship of the Ring', 3.00, 'DVD', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Lord of the Rings: The Two Towers', 5.00, 'BLURAY_4K', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Lord of the Rings: The Two Towers', 4.00, 'BLURAY', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Lord of the Rings: The Two Towers', 3.00, 'DVD', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Lord of the Rings: Return of the King', 5.00, 'BLURAY_4K', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Lord of the Rings: Return of the King', 4.00, 'BLURAY', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Lord of the Rings: Return of the King', 3.00, 'DVD', 'FANTASY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Raising Arizona', 3.00, 'DVD', 'COMEDY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Raising Arizona', 2.00, 'VHS', 'COMEDY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Midsommar', 5.00, 'BLURAY_4K', 'HORROR');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Midsommar', 4.00, 'BLURAY', 'HORROR');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Midsommar', 3.00, 'DVD', 'HORROR');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Lamb', 5.00, 'BLURAY_4K', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Lamb', 4.00, 'BLURAY', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Lady Bird', 5.00, 'BLURAY_4K', 'COMING_OF_AGE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Lady Bird', 4.00, 'BLURAY', 'COMING_OF_AGE');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Goodfellas', 4.00, 'BLURAY', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Goodfellas', 2.00, 'VHS', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Reservoir Dogs', 5.00, 'BLURAY_4K', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Reservoir Dogs', 4.00, 'BLURAY', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Reservoir Dogs', 2.00, 'VHS', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Pulp Fiction', 2.00, 'VHS', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('2001: A Space Odyssey', 5.00, 'BLURAY_4K', 'SCIENCE_FICTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('2001: A Space Odyssey', 4.00, 'BLURAY', 'SCIENCE_FICTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('2001: A Space Odyssey', 1.00, 'LASERDISK', 'SCIENCE_FICTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Wolf of Wall Street', 4.00, 'BLURAY', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Wolf of Wall Street', 3.00, 'DVD', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick', 4.00, 'BLURAY', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick', 3.00, 'DVD', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick 2', 4.00, 'BLURAY', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick 2', 3.00, 'DVD', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick 3', 5.00, 'BLURAY_4K', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick 3', 4.00, 'BLURAY', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick 3', 3.00, 'DVD', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick 4', 5.00, 'BLURAY_4K', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick 4', 4.00, 'BLURAY', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('John Wick 4', 3.00, 'DVD', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Raid: Redemption', 3.00, 'DVD', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Raid 2', 4.00, 'BLURAY', 'ACTION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Oldboy', 3.00, 'DVD', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Decision to Leave', 5.00, 'BLURAY_4K', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('The Big Short', 4.00, 'BLURAY', 'COMEDY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Edward Scissorhands', 1.00, 'LASERDISK', 'DRAMA');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Lilo & Stitch', 2.00, 'VHS', 'ANIMATION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Moana', 4.00, 'BLURAY', 'ANIMATION');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Harry and the Hendersons', 3.00, 'DVD', 'FAMILY');
+INSERT INTO movies (title, price, media_type, genre) VALUES ('Harry and the Hendersons', 2.00, 'VHS', 'FAMILY');
+
+-- video_games table --
+CREATE TABLE video_games (
+	video_game_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	title varchar(50) NOT NULL,
+	price float NOT NULL,
+	console enum('COMPUTER', 'XBOX', 'XBOX_360', 'XBOX_ONE', 'XBOX_SERIES_X', 'PLAYSTATION', 'PLAYSTATION_2', 'PLAYSTATION_3', 'PLAYSTATION_4', 'PLAYSTATION_5', 'NINTENDO_GAMEBOY', 'NINTENDO_DS', 'NINTENDO_3DS', 'NINTENDO_GAMECUBE', 'NINTENDO_WII', 'NINTENDO_WII_U', 'NINTENDO_SWITCH') NOT NULL,
+	gameplay enum('ROLE_PLAYING_GAME', 'FIRST_PERSON_SHOOTER', 'THIRD_PERSON_SHOOTER', 'PLATFORMER', 'TOP_DOWN', 'DECK_BUILDER', 'STRATEGY', 'MASSIVE_MULTIPLAYER_ONLINE', 'ARCADE') NOT NULL,
+	PRIMARY KEY (video_game_pk)
+);
+
+-- video_games data --
+INSERT INTO video_games (video_game_pk, title, price, console, gameplay) VALUES (2001, 'Crash Bandicoot', 2.00, 'PLAYSTATION_2', 'PLATFORMER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Crash Bandicoot', 2.00, 'NINTENDO_GAMECUBE', 'PLATFORMER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Spyro the Dragon', 2.00, 'PLAYSTATION_2', 'PLATFORMER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Spyro the Dragon', 2.00, 'NINTENDO_GAMECUBE', 'PLATFORMER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Jak and Daxter', 2.00, 'PLAYSTATION_2', 'PLATFORMER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Jak 2', 2.00, 'PLAYSTATION_2', 'PLATFORMER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Jak 3', 3.00, 'PLAYSTATION_3', 'PLATFORMER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Ratchet and Clank', 1.00, 'PLAYSTATION', 'PLATFORMER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Halo', 2.00, 'XBOX', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Halo 2', 2.00, 'XBOX', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Halo 3', 3.00, 'XBOX_360', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Halo ODST', 3.00, 'XBOX_360', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Halo 4', 4.00, 'XBOX_ONE', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Halo Infinite', 5.00, 'XBOX_SERIES_X', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Hades', 5.00, 'XBOX_SERIES_X', 'TOP_DOWN');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Hades', 5.00, 'PLAYSTATION_5', 'TOP_DOWN');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Hades', 5.00, 'NINTENDO_SWITCH', 'TOP_DOWN');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Slay the Spire', 5.00, 'NINTENDO_SWITCH', 'DECK_BUILDER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Dark Souls', 3.00, 'XBOX_360', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Dark Souls', 3.00, 'PLAYSTATION_3', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Dark Souls', 5.00, 'NINTENDO_SWITCH', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Dark Souls 2', 3.00, 'XBOX_360', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Dark Souls 2', 3.00, 'PLAYSTATION_3', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Dark Souls 3', 4.00, 'XBOX_ONE', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Dark Souls 3', 4.00, 'PLAYSTATION_4', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Demon Souls', 5.00, 'PLAYSTATION_5', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Bloodborne', 4.00, 'PLAYSTATION_4', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Sekiro: Shadows Die Twice', 4.00, 'XBOX_ONE', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Sekiro: Shadows Die Twice', 4.00, 'PLAYSTATION_4', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Elden Ring', 5.00, 'XBOX_SERIES_X', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Elden Ring', 5.00, 'PLAYSTATION_5', 'ROLE_PLAYING_GAME');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Gears of War', 3.00, 'XBOX_360', 'THIRD_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Gears of War 2', 3.00, 'XBOX_360', 'THIRD_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Gears of War 3', 4.00, 'XBOX_ONE', 'THIRD_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Gears of War 4', 5.00, 'XBOX_SERIES_X', 'THIRD_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands', 3.00, 'XBOX_360', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands', 3.00, 'PLAYSTATION_3', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands 2', 3.00, 'XBOX_360', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands 2', 4.00, 'XBOX_ONE', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands 2', 3.00, 'PLAYSTATION_3', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands 2', 4.00, 'PLAYSTATION_4', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands 3', 4.00, 'XBOX_ONE', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands 3', 5.00, 'XBOX_SERIES_X', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands 3', 4.00, 'PLAYSTATION_4', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Borderlands 3', 5.00, 'PLAYSTATION_5', 'FIRST_PERSON_SHOOTER');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Age of Empires', 1.00, 'COMPUTER', 'STRATEGY');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Age of Empires 2', 2.00, 'COMPUTER', 'STRATEGY');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Age of Empires 3', 3.00, 'COMPUTER', 'STRATEGY');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Age of Mythology', 2.00, 'COMPUTER', 'STRATEGY');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Starcraft', 1.00, 'COMPUTER', 'STRATEGY');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Starcraft 2', 2.00, 'COMPUTER', 'STRATEGY');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Starcraft 3', 3.00, 'COMPUTER', 'STRATEGY');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Warcraft', 1.00, 'COMPUTER', 'STRATEGY');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('World of Warcraft', 3.00, 'COMPUTER', 'MASSIVE_MULTIPLAYER_ONLINE');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Tetris', 1.00, 'NINTENDO_GAMEBOY', 'ARCADE');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Tetris', 2.00, 'NINTENDO_DS', 'ARCADE');
+INSERT INTO video_games (title, price, console, gameplay) VALUES ('Tetris', 3.00, 'NINTENDO_3DS', 'ARCADE');
+
+-- products table --
+CREATE TABLE products AS
+SELECT m.movie_pk AS product_pk, m.title AS title, m.price AS price, m.media_type AS media_type, m.genre AS genre
+FROM movies m
+UNION ALL
+SELECT vg.video_game_pk AS product_pk, vg.title AS title, vg.price AS price, vg.console AS media_type, vg.gameplay AS genre
+FROM video_games vg;
+
+ALTER TABLE products
+ADD PRIMARY KEY (product_pk);
+
+ALTER TABLE products
+ADD due_dat date;
+
+ALTER TABLE products
+ADD status varchar(25);
+
+-- transactions table --
+CREATE TABLE transactions (
+	transaction_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	transaction_date date NOT null,
+	due_date date NOT NULL,
+	price float(5, 2) NOT NULL,
+	product_list set('') NOT NULL,
+	customer_fk int unsigned NOT NULL,
+	administrator_fk int unsigned NOT NULL,
+	PRIMARY KEY (transaction_pk),
+	FOREIGN KEY (customer_fk) 
+		REFERENCES customers (customer_pk),
+	FOREIGN KEY (administrator_fk) 
+		REFERENCES administration (administrator_pk)
+);
+
+-- reviews table --
+CREATE TABLE reviews (
+	review_pk int unsigned NOT NULL AUTO_INCREMENT, 
+	review_string varchar(250) NOT NULL,
+	movie_fk int unsigned,
+	video_game_fk int unsigned,
+	customer_fk int unsigned NOT NULL,
+	PRIMARY KEY (review_pk),
+	FOREIGN KEY (movie_fk) 
+		REFERENCES movies (movie_pk) ON DELETE CASCADE,
+	FOREIGN KEY (video_game_fk) 
+		REFERENCES video_games (video_game_pk) ON DELETE CASCADE,
+	FOREIGN KEY (customer_fk) 
+		REFERENCES customers (customer_pk)
+);
+
+
+-- reviews data --
+INSERT INTO reviews (review_string, movie_fk, customer_fk) VALUES ('Excellent cast but disappointing ending.', 1065, 1);
+INSERT INTO reviews (review_string, movie_fk, customer_fk) VALUES ('Boring and hard to follow', 1016, 2);
+INSERT INTO reviews (review_string, movie_fk, customer_fk) VALUES ('Great effects and action scenes', 1006, 3);
+INSERT INTO reviews (review_string, video_game_fk, customer_fk) VALUES ('The gameplay was fun but the campaign was far too short.', 2010, 4);
+INSERT INTO reviews (review_string, video_game_fk, customer_fk) VALUES ('too buggy', 2034, 5);
+
+
+
+
+

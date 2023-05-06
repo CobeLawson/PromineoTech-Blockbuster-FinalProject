@@ -1,0 +1,28 @@
+package blockbuster.service;
+
+import java.util.List;
+import java.util.Optional;
+import blockbuster.entity.Administrator;
+import blockbuster.entity.Customer;
+import blockbuster.entity.Movie;
+import blockbuster.entity.Product;
+import blockbuster.entity.Rental;
+import blockbuster.entity.RentalDraft;
+import blockbuster.entity.VideoGame;
+import jakarta.validation.Valid;
+
+public interface CheckOutService {
+	
+	Rental createRental(@Valid RentalDraft rentalDraft);
+	Rental returnRental(@Valid RentalDraft rentalDraft);
+	Optional<Movie> fetchMovieByPK(int moviePK);
+	List<Movie> fetchAllMovies();
+	Optional<VideoGame> fetchVideoGameByPK(int videoGamePK);
+	List<VideoGame> fetchAllVideoGames();
+	Optional<Product> fetchProductByPK(int productPK);
+	List<Product> fetchAllProducts();
+	Administrator fetchAdministratorByPK(String administrator);
+	List<Administrator> fetchAllAdministrators();
+	Customer fetchCustomerByPK(String customer);
+	List<Customer> fetchAllCustomers();
+}

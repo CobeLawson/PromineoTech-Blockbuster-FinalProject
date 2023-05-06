@@ -1,0 +1,5 @@
+package blockbuster.controller;
+
+public interface CheckinController {
+
+}

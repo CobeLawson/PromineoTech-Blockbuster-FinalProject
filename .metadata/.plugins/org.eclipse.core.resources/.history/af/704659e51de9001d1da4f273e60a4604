@@ -1,0 +1,5 @@
+package blockbuster.entity;
+
+public enum Console {
+
+}

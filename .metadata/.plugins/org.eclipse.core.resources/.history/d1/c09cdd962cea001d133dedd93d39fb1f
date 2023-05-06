@@ -1,0 +1,64 @@
+package com.promineotech.blockbuster.service;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.util.NoSuchElementException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.promineotech.blockbuster.dao.CheckOutDao;
+import com.promineotech.blockbuster.entity.Administrator;
+import com.promineotech.blockbuster.entity.Customer;
+import com.promineotech.blockbuster.entity.Movie;
+import com.promineotech.blockbuster.entity.Product;
+import com.promineotech.blockbuster.entity.Rental;
+import com.promineotech.blockbuster.entity.RentalRequest;
+import com.promineotech.blockbuster.entity.VideoGame;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class DefaultCheckOutService implements CheckOutService {
+	
+	@Autowired
+	private CheckOutDao checkOutDao;
+	
+	@Transactional
+	@Override
+	public Rental createRental(RentalRequest rentalRequest) {
+		log.info("The createRental method was called with RentalDraft={}", rentalRequest);
+		Administrator administrator = getAdministrator(rentalRequest);
+		Customer customer = getCustomer(rentalRequest);
+		List<Product> products = getProducts(rentalRequest);
+		LocalDate date = LocalDate.now();
+		LocalDate dueDate = date.plusDays(5);
+		BigDecimal price = new BigDecimal("0.0");
+		
+		for(Product product : products) {
+			price = price.add(product.getPrice());
+		}
+		
+		return checkOutDao.saveRental(administrator, customer, products, price, date, dueDate);
+	}
+
+	private List<Product> getProducts(@Valid RentalRequest rentalRequest) {
+		return checkOutDao.fetchProducts(rentalRequest.getProduct_list());
+	}
+
+	private Customer getCustomer(@Valid RentalRequest rentalRequest) {
+		return checkOutDao.fetchCustomer(rentalRequest.getCustomer())
+				.orElseThrow(() -> new NoSuchElementException(
+            "Customer with name=" + rentalRequest.getCustomer() + " was not found"));
+	}
+
+	private Administrator getAdministrator(@Valid RentalRequest rentalRequest) {
+		return checkOutDao.fetchAdministrator(rentalRequest.getAdministrator())
+				.orElseThrow(() -> new NoSuchElementException(
+            "Administrator with name=" + rentalRequest.getAdministrator() + " was not found"));
+	}
+	
+
+}

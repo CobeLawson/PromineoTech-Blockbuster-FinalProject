@@ -1,0 +1,182 @@
+package blockbuster.blockbuster;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication(scanBasePackages = {"blockbuster"})
+public class Blockbuster {
+
+	/*
+	  
+  // @formatter:off
+  private List<String> operations = List.of(
+  	"1) List Movies",
+  	"2) List Video Games",
+  	"3) Check Out",
+  	"4) Check In"
+  );
+  // @formatter:on
+  
+  private Rental curRental;
+  
+  private Scanner scanner = new Scanner(System.in);
+  private CheckoutService checkoutService = new CheckoutService();
+  
+  */
+  
+  //Main App method to start spring and begin running the project
+  public static void main(String[] args) {
+    SpringApplication.run(Blockbuster.class, args);
+    
+    /*
+    
+    new Checkout().processUserSelection();
+    
+    */
+    
+  }
+  
+  /*
+
+	private void processUserSelection() {
+		boolean done = false;
+		
+		while(!done) {
+			try {
+				int selection = getUserSelection();
+				switch(selection) {
+					case -1:
+						done = exitMenu();
+						break;
+					case 1:
+						listMovies();
+						break;
+					case 2:
+						listVideoGames();
+						break;
+					case 3:
+						rentalOut();
+						break;
+					case 4:
+						rentalIn();
+						break;
+					default:
+						System.out.println("\n" + selection + " is not a valid selection. Try again.");
+				}
+			}
+			
+			catch (Exception e) {
+				System.out.println("\nError: " + e + " Try again.");
+			}
+		}
+		
+	}
+	
+	private void printOperations() {
+		System.out.println("\nThese are the available selections. Press the Enter key to quit:");
+		
+		operations.forEach(line -> System.out.println("    " + line));
+	}
+
+	private boolean exitMenu() {
+		System.out.println("Exiting the menu.");
+		return true;
+	}
+	
+	private void listMovies() {
+		List<Movie> movies = checkoutService.fetchAllMovies();
+		
+		System.out.println("\nMovies:");
+		
+		movies.forEach(movie -> System.out.println("  " + movie.getMoviePK() + ":  " + movie.getTitle()));
+	}
+
+	private void listVideoGames() {
+		List<VideoGame> videoGames = checkoutService.fetchAllVideoGames();
+		
+		System.out.println("\nVideo Games:");
+		
+		videoGames.forEach(videoGame -> System.out.println("  " + videoGame.getVideoGamePK() + ":  " + videoGame.getTitle()));
+	}
+
+	private void rentalOut() {
+		List<Product> products;
+		Product curProduct;
+		Movie curMovie;
+		VideoGame curVideoGame;
+		int rentalQuantity = getIntInput("Enter the number of products you wish to rent: ");
+		for(int i = 0; i < rentalQuantity; i++) {
+			int productPK = getIntInput("Enter the PK of the product you wish to rent: ");
+			if(productPK >= 1000 && productPK < 2000) {
+				curMovie = checkoutService.fetchMovieByPK(productPK);
+				curProduct.setMovie(curMovie);
+				curProduct.setPrice(curMovie.getPrice());
+				products.add(curProduct);
+			}
+			else if(productPK >= 2000 && productPK < 3000) {
+				curVideoGame = checkoutService.fetchVideoGameByPK(productPK);
+				curProduct.setVideoGame(curVideoGame);
+				curProduct.setPrice(curVideoGame.getPrice());
+				products.add(curProduct);
+			}
+		}
+	}
+	
+	private void rentalIn() {
+		List<Product> products;
+		Product curProduct;
+		Movie curMovie;
+		VideoGame curVideoGame;
+		int rentalQuantity = getIntInput("Enter the number of products you wish to return: ");
+		for(int i = 0; i < rentalQuantity; i++) {
+			int productPK = getIntInput("Enter the PK of the product you wish to return: ");
+			if(productPK >= 1000 && productPK < 2000) {
+				curMovie = checkoutService.fetchMovieByPK(productPK);
+				curProduct.setMovie(curMovie);
+				curProduct.setPrice(curMovie.getPrice());
+				products.add(curProduct);
+			}
+			else if(productPK >= 2000 && productPK < 3000) {
+				curVideoGame = checkoutService.fetchVideoGameByPK(productPK);
+				curProduct.setVideoGame(curVideoGame);
+				curProduct.setPrice(curVideoGame.getPrice());
+				products.add(curProduct);
+			}
+		}
+	}
+
+	private int getUserSelection() {
+		printOperations();
+		
+		Integer input = getIntInput("Enter a menu selection");
+		
+		return Objects.isNull(input) ? -1 : input;
+	}
+
+	private Integer getIntInput(String prompt) {
+		String input = getStringInput(prompt);
+		
+		if(Objects.isNull(input)) {
+			return null;
+		}
+		
+		try {
+			return Integer.valueOf(input);
+		}
+		catch(NumberFormatException e) {
+			throw new DbException(input + " is not a valid number.");
+		}
+		
+		return null;
+	}
+
+	private String getStringInput(String prompt) {
+		System.out.print(prompt + ": ");
+		String input = scanner.nextLine();
+		
+		return input.isBlank() ? null : input.trim();
+	}
+	
+	*/
+	
+}

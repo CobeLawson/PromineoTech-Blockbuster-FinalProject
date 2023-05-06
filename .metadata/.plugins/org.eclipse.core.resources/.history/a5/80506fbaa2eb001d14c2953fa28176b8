@@ -1,0 +1,14 @@
+package com.promineotech.blockbuster.dao;
+
+import java.util.List;
+import com.promineotech.blockbuster.entity.Customer;
+
+public class DefaultCustomerSystemDao implements CustomerSystemDao {
+
+	@Override
+	public List<Customer> fetchCustomers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

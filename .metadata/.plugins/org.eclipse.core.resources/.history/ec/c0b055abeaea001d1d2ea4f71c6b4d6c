@@ -1,0 +1,16 @@
+package com.promineotech.blockbuster.dao;
+
+import java.util.List;
+import com.promineotech.blockbuster.entity.Genre;
+import com.promineotech.blockbuster.entity.MediaType;
+import com.promineotech.blockbuster.entity.Movie;
+
+public class DefaultMovieInventoryDao implements MovieInventoryDao {
+
+	@Override
+	public List<Movie> fetchMovies(Genre genre, MediaType mediaType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

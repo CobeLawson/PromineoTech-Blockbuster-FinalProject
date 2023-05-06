@@ -1,0 +1,13 @@
+package blockbuster.entity;
+
+public enum Gameplay {
+	ROLE_PLAYING_GAME,
+	FIRST_PERSON_SHOOTER,
+	THIRD_PERSON_SHOOTER,
+	PLATFORMER,
+	TOP_DOWN,
+	DECK_BUILDER,
+	STRATEGY,
+	MMO,
+	ARCADE
+}

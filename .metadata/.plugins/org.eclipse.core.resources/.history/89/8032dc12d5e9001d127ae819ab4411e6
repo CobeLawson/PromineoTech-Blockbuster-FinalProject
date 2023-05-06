@@ -1,0 +1,23 @@
+package blockbuster.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+import blockbuster.entity.Rental;
+import blockbuster.entity.RentalDraft;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@Slf4j
+public class DefaultCheckInController implements CheckInController {
+	
+	@Autowired
+	private CheckInService checkInService;
+
+	@Override
+	public Rental returnRental(@Valid RentalDraft rentalDraft) {
+		log.info("Rental={}, rentalDraft");
+		return checkInService.returnRental(rentalDraft);
+	}
+
+}

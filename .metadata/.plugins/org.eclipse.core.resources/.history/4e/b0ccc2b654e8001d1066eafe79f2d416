@@ -1,0 +1,18 @@
+package blockbuster.entity;
+
+import lombok.Builder;
+import lombok.Data;
+
+/**
+ * @author Cobe Mitchel Lawson
+ *
+ */
+@Data
+@Builder
+public class VideoGame {
+  private int videoGamePK;
+  private String title;
+  private float price;
+  private String genre;
+  private MediaType mediaType;
+}

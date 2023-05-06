@@ -1,0 +1,16 @@
+package com.promineotech.blockbuster.dao;
+
+import java.util.List;
+import com.promineotech.blockbuster.entity.Console;
+import com.promineotech.blockbuster.entity.Gameplay;
+import com.promineotech.blockbuster.entity.VideoGame;
+
+public class DefaultVideoGameInventoryDao implements VideoGameInventoryDao {
+
+	@Override
+	public List<VideoGame> fetchVideoGames(Gameplay gameplay, Console console) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

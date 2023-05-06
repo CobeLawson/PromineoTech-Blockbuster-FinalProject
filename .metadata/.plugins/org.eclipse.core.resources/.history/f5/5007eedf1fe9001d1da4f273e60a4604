@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package blockbuster.entity;
+
+public enum MediaType {
+	LASERDISK,
+	VHS,
+	DVD,
+	BLURAY,
+	4K
+}

@@ -1,0 +1,285 @@
+-- administration --
+insert into administration (administrator_name) values ('David Lynch');
+insert into administration (administrator_name) values ('Greta Gerwig');
+insert into administration (administrator_name) values ('Steven Spielberg');
+insert into administration (administrator_name) values ('Wes Anderson');
+insert into administration (administrator_name) values ('Quentin Tarantino');
+insert into administration (administrator_name) values ('Alfred Hitchcock');
+insert into administration (administrator_name) values ('Stanley Kubrick');
+insert into administration (administrator_name) values ('Kathryn Bigelow');
+insert into administration (administrator_name) values ('Patty Jenkins');
+insert into administration (administrator_name) values ('Tim Burton');
+insert into administration (administrator_name) values ('Chloe Zhao');
+insert into administration (administrator_name) values ('Peter Jackson');
+
+select * from administration;
+
+-- customers --
+insert into customers (customer_name, customer_age) values ('Bruce Willis', 68);
+insert into customers (customer_name, customer_age) values ('John Stamos', 59);
+insert into customers (customer_name, customer_age) values ('Mary Elizabeth Winstead', 38);
+insert into customers (customer_name, customer_age) values ('Kristen Bell', 42);
+insert into customers (customer_name, customer_age) values ('Margot Robbie', 32);
+insert into customers (customer_name, customer_age) values ('Kurt Russell', 72);
+insert into customers (customer_name, customer_age) values ('Ana de Armas', 34);
+insert into customers (customer_name, customer_age) values ('Willem Dafoe', 67);
+insert into customers (customer_name, customer_age) values ('Arnold Schwarzenegger', 75);
+insert into customers (customer_name, customer_age) values ('Keanu Reeves', 58);
+insert into customers (customer_name, customer_age) values ('Laura Dern', 56);
+insert into customers (customer_name, customer_age) values ('Timothée Chalamet', 27);
+insert into customers (customer_name, customer_age) values ('Jackie Chan', 69);
+insert into customers (customer_name, customer_age) values ('Steven Yeun', 39);
+insert into customers (customer_name, customer_age) values ('Ali Wong', 41);
+insert into customers (customer_name, customer_age) values ('Denzel Washinton', 68);
+insert into customers (customer_name, customer_age) values ('Angela Bassett', 64);
+insert into customers (customer_name, customer_age) values ('LaKeith Stanfield', 31);
+insert into customers (customer_name, customer_age) values ('Don Cheadle', 58);
+insert into customers (customer_name, customer_age) values ('Zazie Beetz', 31);
+
+select * from customers;
+
+-- media_type --
+insert into media_type (media_type_pk, media_type_name) values (1001, 'LaserDisk');
+insert into media_type (media_type_name) values ('VHS');
+insert into media_type (media_type_name) values ('DVD');
+insert into media_type (media_type_name) values ('BluRay');
+insert into media_type (media_type_name) values ('4K');
+insert into media_type (media_type_pk, media_type_name) values (2001, 'Computer');
+insert into media_type (media_type_pk, media_type_name) values (2101, 'Xbox');
+insert into media_type (media_type_name) values ('Xbox 360');
+insert into media_type (media_type_name) values ('Xbox One');
+insert into media_type (media_type_name) values ('Xbox Series X');
+insert into media_type (media_type_pk, media_type_name) values (2201, 'PlayStation');
+insert into media_type (media_type_name) values ('PlayStation 2');
+insert into media_type (media_type_name) values ('PlayStation 3');
+insert into media_type (media_type_name) values ('PlayStation 4');
+insert into media_type (media_type_name) values ('PlayStation 5');
+insert into media_type (media_type_pk, media_type_name) values (2301, 'Nintendo GameBoy');
+insert into media_type (media_type_name) values ('Nintendo DS');
+insert into media_type (media_type_name) values ('Nintendo 3DS');
+insert into media_type (media_type_name) values ('Nintendo GameCube');
+insert into media_type (media_type_name) values ('Nintendo Wii');
+insert into media_type (media_type_name) values ('Nintendo Wii U');
+insert into media_type (media_type_name) values ('Nintendo Switch');
+
+select * from media_type;
+
+-- genre --
+insert into genre (genre_pk, genre_name) values (1001, 'Drama');
+insert into genre (genre_name) values ('Comedy');
+insert into genre (genre_name) values ('Animation');
+insert into genre (genre_name) values ('Family');
+insert into genre (genre_name) values ('Horror');
+insert into genre (genre_name) values ('Action');
+insert into genre (genre_name) values ('Adventure');
+insert into genre (genre_name) values ('Mystery');
+insert into genre (genre_name) values ('Romance');
+insert into genre (genre_name) values ('Sci-Fi');
+insert into genre (genre_name) values ('Fantasy');
+insert into genre (genre_name) values ('Coming of Age');
+insert into genre (genre_name) values ('Documentary');
+insert into genre (genre_pk, genre_name) values (2001, 'RPG');
+insert into genre (genre_name) values ('First-Person Shooter');
+insert into genre (genre_name) values ('Third-Person Shooter');
+insert into genre (genre_name) values ('Platformer');
+insert into genre (genre_name) values ('Top-Down');
+insert into genre (genre_name) values ('Deck-Builder');
+insert into genre (genre_name) values ('Strategy');
+insert into genre (genre_name) values ('MMO');
+insert into genre (genre_name) values ('Arcade');
+
+select * from genre;
+
+-- movies --
+insert into movies (movie_pk, title, price, media_type_fk, genre_fk) values (1001, 'The Shawshank Redemption', 5.00, 1005, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Shawshank Redemption', 4.00, 1004, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Shawshank Redemption', 3.00, 1003, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Shawshank Redemption', 2.00, 1002, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Shawshank Redemption', 1.00, 1001, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('District 9', 5.00, 1005, 1010);
+insert into movies (title, price, media_type_fk, genre_fk) values ('District 9', 4.00, 1004, 1010);
+insert into movies (title, price, media_type_fk, genre_fk) values ('District 9', 3.00, 1003, 1010);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Stardust', 5.00, 1005, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Stardust', 4.00, 1004, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Stardust', 3.00, 1003, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('When Harry Met Sally', 4.00, 1004, 1009);
+insert into movies (title, price, media_type_fk, genre_fk) values ('When Harry Met Sally', 3.00, 1003, 1009);
+insert into movies (title, price, media_type_fk, genre_fk) values ('When Harry Met Sally', 2.00, 1002, 1009);
+insert into movies (title, price, media_type_fk, genre_fk) values ('When Harry Met Sally', 1.00, 1001, 1009);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Beau is Afraid', 5.00, 1005, 1005);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Green Knight', 5.00, 1005, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Green Knight', 4.00, 1004, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Hereditary', 5.00, 1005, 1005);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Hereditary', 4.00, 1004, 1005);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Big Trouble in Little China', 4.00, 1004, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Big Trouble in Little China', 3.00, 1003, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Big Trouble in Little China', 2.00, 1002, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Big Trouble in Little China', 1.00, 1001, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Planet Earth', 5.00, 1005, 1013);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Planet Earth', 4.00, 1004, 1013);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Planet Earth', 3.00, 1003, 1013);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Planet Earth 2', 5.00, 1005, 1013);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Planet Earth 2', 4.00, 1004, 1013);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Moonstruck', 3.00, 1003, 1009);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Moonstruck', 2.00, 1002, 1009);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Moonstruck', 1.00, 1001, 1009);
+insert into movies (title, price, media_type_fk, genre_fk) values ('National Treasure', 4.00, 1004, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('National Treasure', 3.00, 1003, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('National Treasure 2', 4.00, 1004, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('National Treasure 2', 3.00, 1003, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Forgetting Sarah Marshall', 4.00, 1004, 1002);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Forgetting Sarah Marshall', 3.00, 1003, 1002);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Escape from New York', 4.00, 1004, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Escape from New York', 3.00, 1003, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Escape from New York', 2.00, 1002, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Escape from New York', 3.00, 1003, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Escape from LA', 3.00, 1003, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Escape from LA', 2.00, 1002, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Escape from LA', 1.00, 1001, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: Curse of the Black Pearl', 4.00, 1004, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: Curse of the Black Pearl', 3.00, 1003, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: Dead Man\'s Chest', 4.00, 1004, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: Dead Man\'s Chest', 3.00, 1003, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: At World\'s End', 4.00, 1004, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: At World\'s End', 3.00, 1003, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: On Stranger Tides', 4.00, 1004, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: On Stranger Tides', 3.00, 1003, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: Dead Men Tell No Tales', 4.00, 1004, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pirates of the Caribbean: Dead Men Tell No Tales', 3.00, 1003, 1007);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Lord of the Rings: The Fellowship of the Ring', 5.00, 1005, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Lord of the Rings: The Fellowship of the Ring', 4.00, 1004, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Lord of the Rings: The Fellowship of the Ring', 3.00, 1003, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Lord of the Rings: The Two Towers', 5.00, 1005, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Lord of the Rings: The Two Towers', 4.00, 1004, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Lord of the Rings: The Two Towers', 3.00, 1003, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Lord of the Rings: Return of the King', 5.00, 1005, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Lord of the Rings: Return of the King', 4.00, 1004, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Lord of the Rings: Return of the King', 3.00, 1003, 1011);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Raising Arizona', 3.00, 1003, 1002);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Raising Arizona', 2.00, 1002, 1002);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Midsommar', 5.00, 1005, 1005);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Midsommar', 4.00, 1004, 1005);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Midsommar', 3.00, 1003, 1005);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Lamb', 5.00, 1005, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Lamb', 4.00, 1004, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Lady Bird', 5.00, 1005, 1012);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Lady Bird', 4.00, 1004, 1012);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Goodfellas', 4.00, 1004, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Goodfellas', 2.00, 1002, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Reservoir Dogs', 5.00, 1005, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Reservoir Dogs', 4.00, 1004, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Reservoir Dogs', 2.00, 1002, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Pulp Fiction', 2.00, 1002, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('2001: A Space Odyssey', 5.00, 1005, 1010);
+insert into movies (title, price, media_type_fk, genre_fk) values ('2001: A Space Odyssey', 4.00, 1004, 1010);
+insert into movies (title, price, media_type_fk, genre_fk) values ('2001: A Space Odyssey', 1.00, 1001, 1010);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Wolf of Wall Street', 4.00, 1004, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Wolf of Wall Street', 3.00, 1003, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick', 4.00, 1004, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick', 3.00, 1003, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick 2', 4.00, 1004, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick 2', 3.00, 1003, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick 3', 5.00, 1005, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick 3', 4.00, 1004, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick 3', 3.00, 1003, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick 4', 5.00, 1005, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick 4', 4.00, 1004, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('John Wick 4', 3.00, 1003, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Raid: Redemption', 3.00, 1003, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Raid 2', 4.00, 1004, 1006);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Oldboy', 3.00, 1003, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Decision to Leave', 5.00, 1005, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('The Big Short', 4.00, 1004, 1002);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Edward Scissorhands', 1.00, 1001, 1001);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Lilo & Stitch', 2.00, 1002, 1003);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Moana', 4.00, 1004, 1003);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Harry and the Hendersons', 3.00, 1003, 1004);
+insert into movies (title, price, media_type_fk, genre_fk) values ('Harry and the Hendersons', 2.00, 1002, 1004);
+
+select * from movies;
+
+-- video_games --
+insert into video_games (video_game_pk, title, price, media_type_fk, genre_fk) values (2001, 'Crash Bandicoot', 2.00, 2202, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Crash Bandicoot', 2.00, 2304, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Spyro the Dragon', 2.00, 2202, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Spyro the Dragon', 2.00, 2304, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Jak and Daxter', 2.00, 2202, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Jak 2', 2.00, 2202, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Jak 3', 3.00, 2203, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Ratchet and Clank', 1.00, 2201, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Halo', 2.00, 2101, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Halo 2', 2.00, 2101, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Halo 3', 3.00, 2102, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Halo ODST', 3.00, 2102, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Halo 4', 4.00, 2103, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Halo Infinite', 5.00, 2104, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Hades', 5.00, 2104, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Hades', 5.00, 2205, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Hades', 5.00, 2307, 2004);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Slay the Spire', 5.00, 2307, 2005);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Dark Souls', 3.00, 2102, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Dark Souls', 3.00, 2203, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Dark Souls', 5.00, 2307, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Dark Souls 2', 3.00, 2102, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Dark Souls 2', 3.00, 2203, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Dark Souls 3', 4.00, 2103, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Dark Souls 3', 4.00, 2204, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Demon Souls', 5.00, 2205, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Bloodborne', 4.00, 2204, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Sekiro: Shadows Die Twice', 4.00, 2103, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Sekiro: Shadows Die Twice', 4.00, 2204, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Elden Ring', 5.00, 2104, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Elden Ring', 5.00, 2205, 2001);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Gears of War', 3.00, 2102, 2003);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Gears of War 2', 3.00, 2102, 2003);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Gears of War 3', 4.00, 2103, 2003);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Gears of War 4', 5.00, 2104, 2003);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands', 3.00, 2102, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands', 3.00, 2203, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands 2', 3.00, 2102, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands 2', 4.00, 2103, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands 2', 3.00, 2203, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands 2', 4.00, 2204, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands 3', 4.00, 2103, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands 3', 5.00, 2104, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands 3', 4.00, 2204, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Borderlands 3', 5.00, 2205, 2002);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Age of Empires', 1.00, 2001, 2007);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Age of Empires 2', 2.00, 2001, 2007);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Age of Empires 3', 3.00, 2001, 2007);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Age of Mythology', 2.00, 2001, 2007);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Starcraft', 1.00, 2001, 2007);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Starcraft 2', 2.00, 2001, 2007);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Starcraft 3', 3.00, 2001, 2007);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Warcraft', 1.00, 2001, 2007);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('World of Warcraft', 3.00, 2001, 2008);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Tetris', 1.00, 2301, 2009);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Tetris', 2.00, 2302, 2009);
+insert into video_games (title, price, media_type_fk, genre_fk) values ('Tetris', 3.00, 2303, 2009);
+
+select * from video_games;
+
+/*
+-- products --
+insert into products (title, price, media_type, genre) values ('World of Warcraft', 3.00, 22, 20);
+
+select * from products;
+*/
+
+/*
+-- transactions --
+insert into transactions (checkout_date, due_date, price, product_list, customer_fk, administrator_fk) 
+values (current_date(), current_date() + 5, (select price from products where product_pk = 1006), 1006, 3, 5);
+
+select * from transactions;
+*/ 
+
+-- reviews --
+insert into reviews (review_string, movie_fk, customer_fk) values ('Excellent cast but disappointing ending.', 1065, 1);
+insert into reviews (review_string, movie_fk, customer_fk) values ('Boring and hard to follow', 1016, 2);
+insert into reviews (review_string, movie_fk, customer_fk) values ('Great effects and action scenes', 1006, 3);
+insert into reviews (review_string, video_game_fk, customer_fk) values ('The gameplay was fun but the campaign was far too short.', 2010, 4);
+insert into reviews (review_string, video_game_fk, customer_fk) values ('too buggy', 2034, 5);
+
+
+select * from reviews;

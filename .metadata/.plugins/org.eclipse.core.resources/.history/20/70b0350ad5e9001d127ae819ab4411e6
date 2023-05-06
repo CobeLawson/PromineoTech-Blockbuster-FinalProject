@@ -1,0 +1,5 @@
+package blockbuster.service;
+
+public interface CheckInService {
+
+}

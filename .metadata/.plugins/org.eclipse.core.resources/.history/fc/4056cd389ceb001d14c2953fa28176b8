@@ -1,0 +1,5 @@
+package com.promineotech.blockbuster.controller;
+
+public interface AdministrationSystemController {
+
+}
