@@ -1,5 +1,0 @@
-package blockbuster.dao;
-
-public interface CheckInDao {
-
-}

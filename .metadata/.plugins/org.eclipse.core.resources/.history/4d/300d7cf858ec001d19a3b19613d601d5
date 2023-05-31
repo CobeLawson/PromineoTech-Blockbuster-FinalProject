@@ -1,5 +1,0 @@
-package com.promineotech.blockbuster.service;
-
-public interface ReviewSystemService {
-
-}

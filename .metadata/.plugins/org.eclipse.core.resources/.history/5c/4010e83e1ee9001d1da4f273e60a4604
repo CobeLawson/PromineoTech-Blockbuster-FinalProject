@@ -1,5 +1,0 @@
-package blockbuster.entity;
-
-public enum Gameplay {
-
-}

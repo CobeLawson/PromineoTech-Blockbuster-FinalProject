@@ -148,7 +148,7 @@ public class DefaultCheckOutDao implements CheckOutDao {
 		
 		// @formatter:off
 		String sql = ""
-				+ "DELETE transactions "
+				+ "DELETE FROM transactions "
 				+ "WHERE transaction_pk = :transaction_pk";
 		// @formatter:on
 		
